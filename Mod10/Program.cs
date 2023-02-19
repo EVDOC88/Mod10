@@ -6,7 +6,7 @@
         {
             var Logger = new Logger();
             var sum = new SumAB(Logger);
-            sum.Sum();
+            ((ISum)sum).Sum();
             Console.ReadLine();
 
         }
@@ -53,24 +53,23 @@
         }
 
 
-        public void Sum()
+        void ISum.Sum()
         {
             logger.Event("Посчитаем сумму A и Б");
 
-            try
-            {
-                logger.Event("Введите число A");
-                double A = double.Parse(Console.ReadLine());
-                logger.Event("Введите число Б");
-                double B = double.Parse(Console.ReadLine());
-                logger.Event($"Сумма чисел A и Б = {A + B}");
+                try
+                {
+                    logger.Event("Введите число A");
+                    double A = double.Parse(Console.ReadLine());
+                    logger.Event("Введите число Б");
+                    double B = double.Parse(Console.ReadLine());
+                    logger.Event($"Сумма чисел A и Б = {A + B}");
 
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-            }
-
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex.Message);
+                }
 
         }
 
